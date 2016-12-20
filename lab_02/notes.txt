@@ -1,0 +1,4 @@
+# updated: 10 Sep 2016
+
+Don't have to find all the bugs
+run `make tar` then write report and submit both to blackboard

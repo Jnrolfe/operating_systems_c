@@ -1,0 +1,4 @@
+# updated: 18 oct 2016
+
+req: makefile
+     *.c

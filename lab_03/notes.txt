@@ -1,0 +1,72 @@
+# updated: 13 sep 2016
+
+File Descriptors:
+    Each process has a table of file descriptors
+        * A table of integers that correspond to files that the process can
+          read or write to.
+        * Whenever fork() is called, the table of file descriptors is copied
+          from the parent
+        * Calling open() returns an integer that is then appended to the file
+          descriptors table
+        * Some pipes may require a close() call on both the child and parent
+        Ex:
+            Main
+            0 -> std in
+            1 -> std out
+            2 -> std err
+            n -> your file
+
+pipe:
+    pipefd[0] is read
+    pipefd[1] is write
+    
+    * we want to call pipe(<param>) then fork() so that each process has the r/w file
+      descriptors table
+    * close everything before 'exit'
+
+    BOARD DIAGRAM:
+        Main
+        0 -> std in
+        1 -> std out
+        2 -> std err
+        3 -> P1 read
+        4 -> P2 read
+        5 -> P2 write
+
+        find
+        """
+        3 -> null
+        4 -> P1 write
+
+        grep
+        """
+        3 -> P1 read
+        4 -> null
+        5 -> P2 write
+
+    BOARD CODE:
+        pipe(P1)
+        pid_t z1 = fork()
+        if(z1 == 0)
+        {
+            close(P1[0])
+        }
+        
+        pipe(P2)
+        pid_t z2 = fork()
+        if(z2 == 0)
+        {
+            close(P2[0])
+        }
+
+dup2:
+    BOARD CODE:
+    dup2(P2 read, STDIN_FILENO)
+        * makes a copy of P2 read and places it in the file descriptor place
+          where std in was. Now we can close the old P2 read but still have it
+          in the file descriptors table. HINT this is how redirects work.
+
+execl:
+    BOARD CODE:
+    execl(Find_exec, Find_exec, argv[1], "-name", "*.[ch]", NULL);
+

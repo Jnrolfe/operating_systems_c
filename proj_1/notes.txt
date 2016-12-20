@@ -1,0 +1,23 @@
+# updated 19 sep 2016
+
+must use "real path" on run_cd
+use #include deque.h to make a wait list, make queue under includes
+
+1.
+in create process
+{
+    example_run_command()
+}
+
+2. implement all run_<cmd>'s
+
+3. then implement the forks in create process
+
+--
+
+For the job struct:
+    there should be a jobs_deq -> |Job_1|Job_2|Job_3|...|
+    each job should have a pid_deq -> |pid_1|pid_2|pid_2|...|
+    each job should have a copy of the command using job.cmd = get_cmd_str()
+        get_cmd_str() is defined already
+        needs to be "freed" eventually

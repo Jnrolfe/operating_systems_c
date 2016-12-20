@@ -1,0 +1,13 @@
+TA name: <removed>
+TA office: 3043 Eaton
+TA email: <removed>
+TA office hours: Tue: 3:00 - 3:50 p.m/ Fri: 11:00 - 11:50 a.m
+
+Submissions:
+    * all labs are due at midnight the day before the next lab
+    * everything is on BB
+    * reports submitted on BB as pdf
+
+Why come to lab:
+    * in lab demos
+    * quick answers
